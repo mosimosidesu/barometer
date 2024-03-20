@@ -13,8 +13,8 @@ MicroPython Driver for the Bosch BMP581 pressure sensor
 
 """
 
-from python_bmp581.i2c_helpers import CBits, RegisterStruct
-
+import smbus2
+from i2c_helpers import CBits, RegisterStruct
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/jposada202020/python_bmp581.git"
@@ -96,9 +96,12 @@ class BMP581:
     _temperature = CBits(24, 0x1D, 0, 3)
     _pressure = CBits(24, 0x20, 0, 3)
 
-    def __init__(self, i2c, address: int = 0x47) -> None:
-        self._i2c = i2c
-        self._address = address
+#    def __init__(self, i2c, address: int = 0x47) -> None:
+#        self._i2c = i2c
+#        self._address = address
+    def __init__(self):
+        self._i2c = smbus2.SMBus(1)
+        self._address = 0x47
 
         if self._device_id != 0x50:
             raise RuntimeError("Failed to find the BMP581 sensor")

@@ -5,19 +5,22 @@
 import time
 from smbus2 import SMBus
 #from gpiozero import I2CDevice
-from python_bmp581 import bmp581
+#from python_bmp581 import bmp581
+import bmp581
 
 # I2Cバス1を開く
-bus = SMBus(1)
+#bus = SMBus(1)
 
 # SDAとSCLに対応するGPIOピンを設定
-SDA = 5
-SCL = 3
+#SDA = 5
+#SCL = 3
 
 # I2Cデバイスを作成
-i2c = I2CDevice(bus, SDA, SCL)
+#i2c = I2CDevice(bus, SDA, SCL)
 
-bmp = bmp581.BMP581(i2c)
+#print(bus)
+
+#bmp = bmp581.BMP581(1,2)
 
 bmp.pressure_oversample_rate = bmp581.OSR16
 
