@@ -261,7 +261,7 @@ class BMP581:
         :return: Pressure in kPa
         """
         raw_pressure = self._pressure
-        return self._twos_comp(raw_pressure, 24) / 2**6.0 / 1000.0
+        return self._twos_comp(raw_pressure, 24) / 2**6.0 / 100.0
 
     @property
     def altitude(self) -> float:
