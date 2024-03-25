@@ -10,5 +10,5 @@ bmp = bmp581.BMP581()
 # so we "burn" one measure
 _ = bmp.pressure
 
-print(f"Pressure: {bmp.pressure:.2f}hPa")
-print(f"Current altitude: {bmp.altitude:.1f}m")
+print(f"気圧: {bmp.pressure:.2f}hPa")
+print(f"高度: {bmp.altitude:.1f}m")
