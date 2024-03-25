@@ -11,5 +11,4 @@ bmp = bmp581.BMP581()
 _ = bmp.pressure
 
 print(f"Pressure: {bmp.pressure:.2f}hPa")
-print(f"Current altitude: {bmp.altitude:.1f}mts")
-# aaa
+print(f"Current altitude: {bmp.altitude:.1f}m")
