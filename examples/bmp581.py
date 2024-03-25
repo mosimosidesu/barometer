@@ -270,13 +270,13 @@ class BMP581:
         the altitude in meters can be calculated with the international barometric formula
         """
         altitude = 44330.0 * (
-            1.0 - ((self.pressure / self.sea_level_pressure) ** 0.190284)
+            1.0 - (( (self.pressure / 10)  / self.sea_level_pressure) ** 0.190284)
         )
         return round(altitude, 1)
 
     @altitude.setter
     def altitude(self, value: float) -> None:
-        self.sea_level_pressure = self.pressure / (1.0 - value / 44330.0) ** 5.255
+        self.sea_level_pressure = (self.pressure / 10) / (1.0 - value / 44330.0) ** 5.255
 
     @staticmethod
     def _twos_comp(val: int, bits: int) -> int:
