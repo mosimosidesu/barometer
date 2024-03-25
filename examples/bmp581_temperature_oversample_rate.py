@@ -3,11 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 import time
-from machine import Pin, I2C
-from python_bmp581 import bmp581
+import bmp581
 
-i2c = I2C(1, sda=Pin(2), scl=Pin(3))  # Correct I2C pins for RP2040
-bmp = bmp581.BMP581(i2c)
+bmp = bmp581.BMP581()
 
 bmp.temperature_oversample_rate = bmp581.OSR4
 
@@ -19,7 +17,7 @@ while True:
         )
         for _ in range(10):
             temp = bmp.temperature
-            print(f"Temperature: {bmp.temperature:.2f}°C")
+            print(f"気温: {bmp.temperature:.2f}°C")
             print()
             time.sleep(0.5)
         bmp.temperature_oversample_rate = temperature_oversample_rate

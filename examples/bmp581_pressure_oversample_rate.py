@@ -3,24 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 import time
-from smbus2 import SMBus
-#from gpiozero import I2CDevice
-#from python_bmp581 import bmp581
 import bmp581
 
-# I2Cバス1を開く
-#bus = SMBus(1)
-
-# SDAとSCLに対応するGPIOピンを設定
-#SDA = 5
-#SCL = 3
-
-# I2Cデバイスを作成
-#i2c = I2CDevice(bus, SDA, SCL)
-
-#print(bus)
-
-#bmp = bmp581.BMP581(1,2)
+bmp = bmp581.BMP581()
 
 bmp.pressure_oversample_rate = bmp581.OSR16
 
@@ -30,7 +15,7 @@ while True:
             "Current Pressure oversample rate setting: ", bmp.pressure_oversample_rate
         )
         for _ in range(10):
-            print(f"Pressure: {bmp.pressure:.2f}kPa")
+            print(f"気圧: {bmp.pressure:.2f}hPa")
             print()
             time.sleep(0.5)
         bmp.pressure_oversample_rate = pressure_oversample_rate
