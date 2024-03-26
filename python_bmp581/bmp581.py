@@ -14,8 +14,7 @@ MicroPython Driver for the Bosch BMP581 pressure sensor
 """
 
 import smbus2
-import python_bmp581.i2c_helpers as CBits
-import python_bmp581.i2c_helpers as RegisterStruct
+from i2c_helpers import CBits, RegisterStruct
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/jposada202020/python_bmp581.git"
