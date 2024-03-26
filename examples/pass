@@ -1,12 +1,14 @@
 import sys
 
 # 削除したいパス
-path_to_remove = "/home/mosim/scr/barometer/\n"
+#path_to_remove = "/home/mosim/scr/barometer/\n"
 
 # パスがsys.pathに存在するか確認
+"""
 if path_to_remove in sys.path:
     # 存在する場合は削除
     print(path_to_remove)
     sys.path.remove(path_to_remove)
 
+"""
 print(sys.path)
