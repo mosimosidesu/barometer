@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-import bmp581
+import python_bmp581.bmp581 as bmp581
 
 bmp = bmp581.BMP581()
 

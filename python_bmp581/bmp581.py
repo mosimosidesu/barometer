@@ -14,8 +14,8 @@ MicroPython Driver for the Bosch BMP581 pressure sensor
 """
 
 import smbus2
-from i2c_helpers import CBits, RegisterStruct
-
+import python_bmp581.i2c_helpers as CBits
+import python_bmp581.i2c_helpers as RegisterStruct
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/jposada202020/python_bmp581.git"
@@ -98,6 +98,8 @@ class BMP581:
     _pressure = CBits(24, 0x20, 0, 3)
 
 #    def __init__(self, i2c, address: int = 0x47) -> None:
+#        self._i2c = i2c
+#        self._address = address
     def __init__(self):
         self._i2c = smbus2.SMBus(1)
         self._address = 0x47
@@ -260,7 +262,7 @@ class BMP581:
         :return: Pressure in kPa
         """
         raw_pressure = self._pressure
-        return self._twos_comp(raw_pressure, 24) / 2**6.0 / 1000.0
+        return self._twos_comp(raw_pressure, 24) / 2**6.0 / 100.0
 
     @property
     def altitude(self) -> float:
@@ -269,13 +271,13 @@ class BMP581:
         the altitude in meters can be calculated with the international barometric formula
         """
         altitude = 44330.0 * (
-            1.0 - ((self.pressure / self.sea_level_pressure) ** 0.190284)
+            1.0 - (( (self.pressure / 10)  / self.sea_level_pressure) ** 0.190284)
         )
         return round(altitude, 1)
 
     @altitude.setter
     def altitude(self, value: float) -> None:
-        self.sea_level_pressure = self.pressure / (1.0 - value / 44330.0) ** 5.255
+        self.sea_level_pressure = (self.pressure / 10) / (1.0 - value / 44330.0) ** 5.255
 
     @staticmethod
     def _twos_comp(val: int, bits: int) -> int:
