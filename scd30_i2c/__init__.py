@@ -185,6 +185,7 @@ class SCD30:
         ambient_pressure may be set to either 0 to disable ambient pressure
         compensation, or between [700; 1400] mBar.
         """
+        
         if ambient_pressure and not 700 <= ambient_pressure <= 1400:
             raise ValueError("Ambient pressure must be set to either 0 or in "
                              "the range [700; 1400] mBar")
