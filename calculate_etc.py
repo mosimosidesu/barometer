@@ -45,18 +45,18 @@ def discomfort_index(T, H):
 
 def print_discomfort_index(DI):
     if DI < 55:
-        print(f'\033[34mDI: {DI} - 寒い\033[0m')
+        print(f'\033[34mDI: {DI:.1f} - 寒い\033[0m')
     elif DI < 60:
-        print(f'\033[36mDI: {DI} - 肌寒い\033[0m')
+        print(f'\033[36mDI: {DI:.1f} - 肌寒い\033[0m')
     elif DI < 65:
-        print(f'\033[37mDI: {DI} - 何も感じない\033[0m')
+        print(f'\033[37mDI: {DI:.1f} - 何も感じない\033[0m')
     elif DI < 70:
-        print(f'\033[32mDI: {DI} - 快い\033[0m')
+        print(f'\033[32mDI: {DI:.1f} - 快い\033[0m')
     elif DI < 75:
-        print(f'\033[33mDI: {DI} - 暑くない\033[0m')
+        print(f'\033[33mDI: {DI:.1f} - 暑くない\033[0m')
     elif DI < 80:
-        print(f'\033[93mDI: {DI} - やや暑い\033[0m')
+        print(f'\033[93mDI: {DI:.1f} - やや暑い\033[0m')
     elif DI < 85:
-        print(f'\033[91mDI: {DI} - 暑い\033[0m')
+        print(f'\033[91mDI: {DI:.1f} - 暑い\033[0m')
     else:
-        print(f'\033[31mDI: {DI} - とても暑い\033[0m')
+        print(f'\033[31mDI: {DI:.1f} - とても暑い\033[0m')

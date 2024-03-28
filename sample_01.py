@@ -1,12 +1,8 @@
 from python_bmp581 import bmp581
 from scd30_i2c import SCD30
-#import calculate_etc
-from calculate_etc import absolute_humidity_dew_point,discomfort_index,print_discomfort_index
-#from calculate_etc import discomfort_index
-#from calculate_etc import print_discomfort_index
+from calculate_etc import absolute_humidity_dew_point, discomfort_index, print_discomfort_index
 import logging
 import time
-
 
 # BMP581
 bmp = bmp581.BMP581()
@@ -57,11 +53,13 @@ logging.info(f"Measurement interval: {scd30.get_measurement_interval()}s")
 logging.info(f"Temperature offset: {scd30.get_temperature_offset()}'C")
 
 try:
+
     while True:
         if scd30.get_data_ready():
             measurement = scd30.read_measurement()
             if measurement is not None:
                 humidity_dew = absolute_humidity_dew_point(bmp.temperature, measurement[2], bmp.pressure)
+                print_discomfort_index(discomfort_index(bmp.temperature,measurement[2]))
                 print(f"気温: {bmp.temperature:.2f}°C")
                 print(f"相対湿度: {measurement[2]:.2f}%")
                 print(f"絶対湿度: {humidity_dew[0]:.2f}g/m^3")
