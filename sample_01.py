@@ -38,7 +38,7 @@ logging.info("Getting firmware version...")
 logging.info(f"Sensor firmware version: {scd30.get_firmware_version()}")
 
 # 2 seconds is the minimum supported interval.
-measurement_interval = 4
+measurement_interval = 5
 
 logging.info("Setting measurement interval to 2s...")
 scd30.set_measurement_interval(measurement_interval)
@@ -62,6 +62,7 @@ try:
                 humidity_dew = absolute_humidity_dew_point(bmp.temperature, measurement[2], bmp.pressure)
                 print(time.strftime('%Y年%m月%d日(%a)'))
                 print(time.strftime('%H:%M:%S'))
+                print_discomfort_index(discomfort_index(bmp.temperature,measurement[2]))
                 print(f"気温: {bmp.temperature:.2f}°C")
                 print(f"相対湿度: {measurement[2]:.2f}%")
                 print(f"絶対湿度: {humidity_dew[0]:.2f}g/m^3")
