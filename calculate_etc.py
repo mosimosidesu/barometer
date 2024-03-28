@@ -1,6 +1,6 @@
 import math
 
-def calculate_absolute_humidity_and_dew_point(T, HR, P):
+def absolute_humidity_dew_point(T, HR, P):
     """
     Calculate absolute humidity and dew point from temperature, relative humidity, and atmospheric pressure.
 
@@ -60,18 +60,3 @@ def print_discomfort_index(DI):
         print(f'\033[91mDI: {DI} - 暑い\033[0m')
     else:
         print(f'\033[31mDI: {DI} - とても暑い\033[0m')
-
-
-# Test the function
-T = 25  # Temperature in degrees Celsius
-HR = 50  # Relative humidity in percent
-P = 1013.25  # Atmospheric pressure in hPa
-
-D, HW, td = calculate_absolute_humidity_and_dew_point(T, HR, P)
-print(f"Absolute humidity: {D} g/m^3, {HW} g/kg, Dew point: {td} degrees Celsius")
-
-T = 10  # 乾球気温℃
-H = 40  # 湿度％
-
-DI = discomfort_index(T, H)
-print_discomfort_index(DI)
