@@ -43,20 +43,18 @@ def discomfort_index(T, H):
     DI = 0.81 * T + 0.01 * H * (0.99 * T - 14.3) + 46.3
     return DI
 
-def print_discomfort_index(DI):
-    if DI < 55:
-        print(f'\033[34mDI: {DI:.1f} - 寒い\033[0m')
-    elif DI < 60:
-        print(f'\033[36mDI: {DI:.1f} - 肌寒い\033[0m')
-    elif DI < 65:
-        print(f'\033[37mDI: {DI:.1f} - 何も感じない\033[0m')
-    elif DI < 70:
-        print(f'\033[32mDI: {DI:.1f} - 快い\033[0m')
-    elif DI < 75:
-        print(f'\033[33mDI: {DI:.1f} - 暑くない\033[0m')
-    elif DI < 80:
-        print(f'\033[93mDI: {DI:.1f} - やや暑い\033[0m')
-    elif DI < 85:
-        print(f'\033[91mDI: {DI:.1f} - 暑い\033[0m')
-    else:
-        print(f'\033[31mDI: {DI:.1f} - とても暑い\033[0m')
+def get_discomfort_index(DI):
+    discomfort_levels = [
+        (55, '\033[34m', '寒い'),
+        (60, '\033[36m', '肌寒い'),
+        (65, '\033[37m', '何も感じない'),
+        (70, '\033[32m', '快い'),
+        (75, '\033[33m', '暑くない'),
+        (80, '\033[93m', 'やや暑い'),
+        (85, '\033[91m', '暑い'),
+        (float('inf'), '\033[31m', 'とても暑い')
+    ]
+    
+    for level in discomfort_levels:
+        if DI < level[0]:
+            return f"{level[1]}{DI:.1f} - {level[2]}\033[0m"
